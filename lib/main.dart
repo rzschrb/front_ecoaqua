@@ -53,15 +53,16 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 13, 13, 13),
       body: Center(
         child: Column(
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0.0, 100.0, 0, 10.0),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(0.0, 100.0, 0, 10.0),
               child:
               Text(
-                'Sign In.',
-                style: Theme.of(context).textTheme.headline3,
+                'Sign in.',
+                style: TextStyle(color: Colors.white, fontSize: 32)
               ),
             ),
             Padding(
@@ -69,14 +70,18 @@ class _MyHomePageState extends State<MyHomePage> {
               child:
               TextFormField(
                 decoration: const InputDecoration(
-                  icon: Icon(Icons.account_circle),
+                  icon: Icon(Icons.account_circle, color: Colors.white),
                   labelText: 'Username',
                   labelStyle: TextStyle(
-                    color: Color(0xFF6200EE),
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold
                   ),
-                  helperText: 'Username',
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF6200EE)),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30.0))
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                      borderSide: BorderSide(color: Colors.white, width: 1.5)
                   ),
                 ),
               ),
@@ -86,14 +91,18 @@ class _MyHomePageState extends State<MyHomePage> {
               child:
               TextFormField(
                 decoration: const InputDecoration(
-                  icon: Icon(Icons.key),
+                  icon: Icon(Icons.key, color: Colors.white),
                   labelText: 'Password',
                   labelStyle: TextStyle(
-                    color: Color(0xFF6200EE),
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold
                   ),
-                  helperText: 'Password',
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF6200EE)),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(30.0))
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                      borderSide: BorderSide(color: Colors.white, width: 1.5)
                   ),
                 ),
               ),
