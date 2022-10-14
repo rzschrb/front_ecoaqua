@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:front_ecoaqua/widget/button_gradient.dart';
+
+import 'createAccount.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,12 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'EcoAqua Sign In',
       theme: ThemeData(
         // This is the theme of your application.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'EcoAqua Sign In Page'),
     );
   }
 }
@@ -31,18 +34,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,16 +44,17 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 13, 13, 13),
+      backgroundColor: const Color.fromARGB(255, 13, 13, 13),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Padding(
-              padding: EdgeInsets.fromLTRB(0.0, 100.0, 0, 10.0),
+              padding: EdgeInsets.fromLTRB(0.0, 0.0, 0, 10.0),
               child:
               Text(
                 'Sign in.',
-                style: TextStyle(color: Colors.white, fontSize: 32)
+                style: TextStyle(color: Colors.white, fontSize: 32),
               ),
             ),
             Padding(
@@ -70,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child:
               TextFormField(
                 decoration: const InputDecoration(
-                  icon: Icon(Icons.account_circle, color: Colors.white),
+                  prefixIcon: Icon(Icons.account_circle, color: Colors.white),
                   labelText: 'Username',
                   labelStyle: TextStyle(
                       color: Colors.white,
@@ -91,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child:
               TextFormField(
                 decoration: const InputDecoration(
-                  icon: Icon(Icons.key, color: Colors.white),
+                  prefixIcon: Icon(Icons.key, color: Colors.white),
                   labelText: 'Password',
                   labelStyle: TextStyle(
                     color: Colors.white,
@@ -110,12 +102,16 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
               padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30, 10.0),
               child:
-              ElevatedButton.icon(
+              BtnGradient(
+                width: 250,
+                borderRadius: BorderRadius.circular(30),
                 onPressed: () {
                   // Respond to button press
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => const CreateAccountPage())
+                  );
                 },
-                icon: const Icon(Icons.arrow_forward_ios, size: 18),
-                label: const Text("Sign In"),
+                child: const Text("Sign In"),
               )
             ),
           ],
