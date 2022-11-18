@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         // This is the theme of your application.
         primarySwatch: Colors.blue,
+        fontFamily: 'SF Pro',
       ),
       home: const MyHomePage(title: 'EcoAqua Sign In Page'),
     );
@@ -44,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 13, 13, 13),
+      backgroundColor: const Color.fromARGB(255, 4, 6, 12),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -63,17 +64,17 @@ class _MyHomePageState extends State<MyHomePage> {
               TextFormField(
                 decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.account_circle, color: Colors.white),
-                  labelText: 'Username',
+                  labelText: 'Email',
                   labelStyle: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold
                   ),
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30.0))
+                      borderRadius: BorderRadius.all(Radius.circular(12.0))
                   ),
                   enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                      borderSide: BorderSide(color: Colors.white, width: 1.5)
+                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                      borderSide: BorderSide(color: Color.fromARGB(255, 0, 87, 255), width: 1.5)
                   ),
                 ),
               ),
@@ -90,11 +91,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     fontWeight: FontWeight.bold
                   ),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(30.0))
+                    borderRadius: BorderRadius.all(Radius.circular(12.0))
                   ),
                   enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                      borderSide: BorderSide(color: Colors.white, width: 1.5)
+                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                      borderSide: BorderSide(color: Color.fromARGB(255, 0, 87, 255), width: 1.5)
                   ),
                 ),
               ),
@@ -102,17 +103,20 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
               padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30, 10.0),
               child:
-              BtnGradient(
-                width: 250,
-                borderRadius: BorderRadius.circular(30),
-                onPressed: () {
-                  // Respond to button press
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => const CreateAccountPage())
-                  );
-                },
-                child: const Text("Sign In"),
-              )
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(100.0,45.0),
+                      backgroundColor: const Color.fromARGB(255, 0, 87, 255),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                    ),
+                      onPressed: () {
+                        // Respond to button press
+                        Navigator.push(
+                            context, MaterialPageRoute(builder: (context) => const CreateAccountPage())
+                        );
+                      },
+                      child: const Text('Sign In')
+                  ),
             ),
           ],
         ),
