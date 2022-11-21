@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:front_ecoaqua/widget/button_gradient.dart';
+import 'package:front_ecoaqua/devicesScreen.dart';
 
 import 'createAccount.dart';
 
@@ -112,11 +112,23 @@ class _MyHomePageState extends State<MyHomePage> {
                       onPressed: () {
                         // Respond to button press
                         Navigator.push(
-                            context, MaterialPageRoute(builder: (context) => const CreateAccountPage())
+                            context, MaterialPageRoute(builder: (context) => const DevicesPage())
                         );
                       },
                       child: const Text('Sign In')
                   ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+              child:
+              InkWell(
+                child: const Text('Create new account', style: (TextStyle( color: Colors.white, fontSize: 12))),
+                onTap: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => const CreateAccountPage())
+                  );
+                },
+              )
             ),
           ],
         ),

@@ -32,6 +32,8 @@ class DevicesHome extends StatefulWidget {
 }
 
 class _DevicesHomeState extends State<DevicesHome> {
+  bool light = true;
+
 
   @override
   Widget build(BuildContext context) {
@@ -69,78 +71,181 @@ class _DevicesHomeState extends State<DevicesHome> {
                 )
               ],
             ),
-            Column(
-              children: [
-                Card(
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(18))
-                  ),
-                  color: const Color.fromARGB(255, 182, 182, 182),
-                  child: SizedBox(
-                    width: 325,
-                    height: 100,
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Padding(
-                                padding: EdgeInsets.fromLTRB(15.0, 0.0, 0.0, 0.0),
-                                child: Text('Dispositivo Teste',
-                                    style: TextStyle(color: Colors.black, fontSize: 12.0))
-                            ),
-                            Padding(
-                                padding: const EdgeInsets.fromLTRB(60.0, 0.0, 0.0, 0.0),
-                                child: IconButton(onPressed: () {
-                                  // Respond to button press
-                                  Navigator.push(
-                                      context, MaterialPageRoute(builder: (context) => const MyApp())
-                                  );
-                                },
-                                    icon: const Icon(Icons.settings, color: Colors.black, size: 16,))
-                            )
-                          ],
-                        ),
-                      ],
+            Expanded(child:
+              ListView(
+                padding: const EdgeInsets.fromLTRB(32.0,0.0,32.0,0.0),
+                children: [
+                  Card(
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(18))
+                    ),
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    child: SizedBox(
+                      width: 325,
+                      height: 150,
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(15.0, 0.0, 0.0, 0.0),
+                                  child: Text('Dispositivo Teste',
+                                      style: TextStyle(color: Colors.black, fontSize: 14.0))
+                              ),
+                              Padding(
+                                  padding: const EdgeInsets.fromLTRB(60.0, 0.0, 0.0, 0.0),
+                                  child: IconButton(onPressed: () {
+                                    // Respond to button press
+                                    Navigator.push(
+                                        context, MaterialPageRoute(builder: (context) => const MyApp())
+                                    );
+                                  },
+                                      icon: const Icon(Icons.settings, color: Colors.black, size: 16,))
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: const [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(15.0, 0.0, 0.0, 10.0),
+                                child: (
+                                  Text("Output 1",
+                                      style: TextStyle(color: Colors.black, fontSize: 12.0))
+                                ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: const [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(15.0, 0.0, 0.0, 10.0),
+                                child: (
+                                    Text("Output 2",
+                                        style: TextStyle(color: Colors.black, fontSize: 12.0))
+                                ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0),
+                                child: (
+                                    Switch(value: light, onChanged: (bool value) {
+                                      setState(() {
+                                        light = value;
+                                        if (light) {
+                                          const snackBar = SnackBar(
+                                            content: Text("Válvula aberta!"),
+                                          );
+                                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                        } else {
+                                          const snackBar = SnackBar(
+                                            content: Text("Válvula fechada!"),
+                                          );
+                                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                        }
+                                      });
+                                    }
+                                    )
+                                  ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                Card(
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(18))
-                  ),
-                  color: const Color.fromARGB(255, 20, 22, 28),
-                  child: SizedBox(
-                  width: 325,
-                        height: 100,
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Padding(
-                                    padding: EdgeInsets.fromLTRB(15.0, 0.0, 0.0, 0.0),
-                                    child: Text('Dispositivo Teste 1',
+                  Card(
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(18))
+                    ),
+                    color: const Color.fromARGB(255, 20, 22, 28),
+                    child: SizedBox(
+                      width: 325,
+                      height: 150,
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(15.0, 0.0, 0.0, 0.0),
+                                  child: Text('Dispositivo Teste 1',
+                                      style: TextStyle(color: Colors.white, fontSize: 12.0))
+                              ),
+                              Padding(
+                                  padding: const EdgeInsets.fromLTRB(60.0, 0.0, 0.0, 0.0),
+                                  child: IconButton(onPressed: () {
+                                    // Respond to button press
+                                    Navigator.push(
+                                        context, MaterialPageRoute(builder: (context) => const MyApp())
+                                    );
+                                  },
+                                      icon: const Icon(Icons.settings, color: Colors.white, size: 16,))
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: const [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(15.0, 0.0, 0.0, 10.0),
+                                child: (
+                                    Text("Output 1",
                                         style: TextStyle(color: Colors.white, fontSize: 12.0))
                                 ),
-                                Padding(
-                                    padding: const EdgeInsets.fromLTRB(60.0, 0.0, 0.0, 0.0),
-                                    child: IconButton(onPressed: () {
-                                      // Respond to button press
-                                      Navigator.push(
-                                          context, MaterialPageRoute(builder: (context) => const MyApp())
-                                      );
-                                    },
-                                        icon: const Icon(Icons.settings, color: Colors.white, size: 16,))
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: const [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(15.0, 0.0, 0.0, 10.0),
+                                child: (
+                                    Text("Output 2",
+                                        style: TextStyle(color: Colors.white, fontSize: 12.0))
+                                ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0),
+                                child: (
+                                    Switch(value: light, onChanged: (bool value) {
+                                      setState(() {
+                                        light = value;
+                                        if (light) {
+                                          const snackBar = SnackBar(
+                                            content: Text("Válvula aberta!"),
+                                          );
+                                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                        } else {
+                                          const snackBar = SnackBar(
+                                            content: Text("Válvula fechada!"),
+                                          );
+                                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                        }
+                                      });
+                                    }
+                                    )
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
+                ],
+              )
+            ),
+            Column(
+              children: [
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0, 0.0),
+                  padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0, 20.0),
                   child:
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(

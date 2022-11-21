@@ -156,6 +156,18 @@ class _CreateAccountHomeState extends State<CreateAccountHome> {
                     child: const Text('Sign Up')
                 ),
             ),
+            Padding(
+                padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                child:
+                InkWell(
+                  child: const Text('Already have an account. Log In', style: (TextStyle( color: Colors.white, fontSize: 12))),
+                  onTap: () {
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => const MyApp())
+                    );
+                  },
+                )
+            ),
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
