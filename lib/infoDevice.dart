@@ -400,7 +400,7 @@ class _InfoDeviceHomeState extends State<InfoDeviceHome> {
                   onPressed: () {
                     // Respond to button press
                     Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => const MyApp())
+                        context, MaterialPageRoute(builder: (context) => const DevicesPage())
                     );
                   },
                   child: const Text('Remover Dispositivo', style: TextStyle(color: Colors.white))

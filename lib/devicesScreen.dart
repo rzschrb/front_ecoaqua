@@ -71,7 +71,8 @@ class _DevicesHomeState extends State<DevicesHome> {
                         context, MaterialPageRoute(builder: (context) => const MyApp())
                     );
                   },
-                      icon: const Icon(Icons.person, color: Colors.white))
+                      //icon: const Icon(Icons.person, color: Colors.white))
+                      icon: const Icon(Icons.exit_to_app, color: Colors.white))
                 )
               ],
             ),
