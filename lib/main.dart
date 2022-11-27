@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:front_ecoaqua/devicesScreen.dart';
 
 import 'createAccount.dart';
@@ -16,9 +17,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'EcoAqua Sign In',
       theme: ThemeData(
-        // This is the theme of your application.
+        useMaterial3: true,
         primarySwatch: Colors.blue,
-        fontFamily: 'SF Pro',
+        fontFamily: 'SF Pro'
       ),
       home: const MyHomePage(title: 'EcoAqua Sign In Page'),
     );

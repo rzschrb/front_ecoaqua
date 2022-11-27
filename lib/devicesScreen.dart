@@ -1,8 +1,10 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:front_ecoaqua/main.dart';
+import 'package:front_ecoaqua/infoDevice.dart';
 
 class DevicesPage extends StatelessWidget {
   const DevicesPage({super.key});
@@ -32,8 +34,10 @@ class DevicesHome extends StatefulWidget {
 }
 
 class _DevicesHomeState extends State<DevicesHome> {
-  bool light = true;
-
+  bool deviceOne = true;
+  bool deviceTwo = true;
+  static String _deviceOneSwitch = "Aberta";
+  static String _deviceTwoSwitch = "Aberta";
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +102,7 @@ class _DevicesHomeState extends State<DevicesHome> {
                                   child: IconButton(onPressed: () {
                                     // Respond to button press
                                     Navigator.push(
-                                        context, MaterialPageRoute(builder: (context) => const MyApp())
+                                        context, MaterialPageRoute(builder: (context) => const InfoDevicePage())
                                     );
                                   },
                                       icon: const Icon(Icons.settings, color: Colors.black, size: 16,))
@@ -130,26 +134,34 @@ class _DevicesHomeState extends State<DevicesHome> {
                           Row(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0),
+                                padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
                                 child: (
-                                    Switch(value: light, onChanged: (bool value) {
+                                    CupertinoSwitch(value: deviceOne, onChanged: (bool value) {
                                       setState(() {
-                                        light = value;
-                                        if (light) {
+                                        deviceOne = value;
+                                        if (deviceOne) {
                                           const snackBar = SnackBar(
                                             content: Text("Válvula aberta!"),
                                           );
                                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                          _deviceOneSwitch = "Aberta";
                                         } else {
                                           const snackBar = SnackBar(
                                             content: Text("Válvula fechada!"),
                                           );
                                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                          _deviceOneSwitch = "Fechada";
                                         }
                                       });
                                     }
                                     )
                                   ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0),
+                                child: (
+                                    Text(_deviceOneSwitch)
+                                ),
                               )
                             ],
                           ),
@@ -173,14 +185,14 @@ class _DevicesHomeState extends State<DevicesHome> {
                               const Padding(
                                   padding: EdgeInsets.fromLTRB(15.0, 0.0, 0.0, 0.0),
                                   child: Text('Dispositivo Teste 1',
-                                      style: TextStyle(color: Colors.white, fontSize: 12.0))
+                                      style: TextStyle(color: Colors.white, fontSize: 14.0))
                               ),
                               Padding(
                                   padding: const EdgeInsets.fromLTRB(60.0, 0.0, 0.0, 0.0),
                                   child: IconButton(onPressed: () {
                                     // Respond to button press
                                     Navigator.push(
-                                        context, MaterialPageRoute(builder: (context) => const MyApp())
+                                        context, MaterialPageRoute(builder: (context) => const InfoDevicePage())
                                     );
                                   },
                                       icon: const Icon(Icons.settings, color: Colors.white, size: 16,))
@@ -212,25 +224,34 @@ class _DevicesHomeState extends State<DevicesHome> {
                           Row(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0),
+                                padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
                                 child: (
-                                    Switch(value: light, onChanged: (bool value) {
+                                    CupertinoSwitch(value: deviceTwo, onChanged: (bool value) {
                                       setState(() {
-                                        light = value;
-                                        if (light) {
+                                        deviceTwo = value;
+                                        if (deviceTwo) {
                                           const snackBar = SnackBar(
                                             content: Text("Válvula aberta!"),
                                           );
                                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                          _deviceTwoSwitch = "Aberta";
                                         } else {
                                           const snackBar = SnackBar(
                                             content: Text("Válvula fechada!"),
                                           );
                                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                          _deviceTwoSwitch = "Fechada";
                                         }
                                       });
                                     }
                                     )
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0),
+                                child: (
+                                    Text(_deviceTwoSwitch,
+                                    style: const TextStyle(color: Colors.white))
                                 ),
                               )
                             ],
@@ -242,28 +263,24 @@ class _DevicesHomeState extends State<DevicesHome> {
                 ],
               )
             ),
-            Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0, 20.0),
-                  child:
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(100.0,45.0),
-                        backgroundColor: const Color.fromARGB(255, 0, 87, 255),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                      ),
-                      onPressed: () {
-                        // Respond to button press
-                        Navigator.push(
-                            context, MaterialPageRoute(builder: (context) => const MyApp())
-                        );
-                      },
-                      child: const Text('New Device')
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0, 20.0),
+              child:
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(100.0,45.0),
+                    backgroundColor: const Color.fromARGB(255, 0, 87, 255),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   ),
-                ),
-              ],
-            )
+                  onPressed: () {
+                    // Respond to button press
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => const MyApp())
+                    );
+                  },
+                  child: const Text('New Device')
+              ),
+            ),
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
