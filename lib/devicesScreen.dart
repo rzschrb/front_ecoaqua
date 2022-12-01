@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:front_ecoaqua/main.dart';
 import 'package:front_ecoaqua/infoDevice.dart';
+import 'package:front_ecoaqua/posts.dart';
 
 class DevicesPage extends StatelessWidget {
   const DevicesPage({super.key});
@@ -77,7 +78,8 @@ class _DevicesHomeState extends State<DevicesHome> {
               ],
             ),
             Expanded(child:
-              ListView(
+                PostsPage()
+              /*ListView(
                 padding: const EdgeInsets.fromLTRB(32.0,0.0,32.0,0.0),
                 children: [
                   Card(
@@ -170,99 +172,8 @@ class _DevicesHomeState extends State<DevicesHome> {
                       ),
                     ),
                   ),
-                  Card(
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(18))
-                    ),
-                    color: const Color.fromARGB(255, 20, 22, 28),
-                    child: SizedBox(
-                      width: 325,
-                      height: 150,
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(15.0, 0.0, 0.0, 0.0),
-                                  child: Text('Dispositivo Teste 1',
-                                      style: TextStyle(color: Colors.white, fontSize: 14.0))
-                              ),
-                              Padding(
-                                  padding: const EdgeInsets.fromLTRB(60.0, 0.0, 0.0, 0.0),
-                                  child: IconButton(onPressed: () {
-                                    // Respond to button press
-                                    Navigator.push(
-                                        context, MaterialPageRoute(builder: (context) => const InfoDevicePage())
-                                    );
-                                  },
-                                      icon: const Icon(Icons.settings, color: Colors.white, size: 16,))
-                              )
-                            ],
-                          ),
-                          Row(
-                            children: const [
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(15.0, 0.0, 0.0, 10.0),
-                                child: (
-                                    Text("Output 1",
-                                        style: TextStyle(color: Colors.white, fontSize: 12.0))
-                                ),
-                              )
-                            ],
-                          ),
-                          Row(
-                            children: const [
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(15.0, 0.0, 0.0, 10.0),
-                                child: (
-                                    Text("Output 2",
-                                        style: TextStyle(color: Colors.white, fontSize: 12.0))
-                                ),
-                              )
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
-                                child: (
-                                    CupertinoSwitch(value: deviceTwo, onChanged: (bool value) {
-                                      setState(() {
-                                        deviceTwo = value;
-                                        if (deviceTwo) {
-                                          const snackBar = SnackBar(
-                                            content: Text("Válvula aberta!"),
-                                          );
-                                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                                          _deviceTwoSwitch = "Aberta";
-                                        } else {
-                                          const snackBar = SnackBar(
-                                            content: Text("Válvula fechada!"),
-                                          );
-                                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                                          _deviceTwoSwitch = "Fechada";
-                                        }
-                                      });
-                                    }
-                                    )
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0),
-                                child: (
-                                    Text(_deviceTwoSwitch,
-                                    style: const TextStyle(color: Colors.white))
-                                ),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
                 ],
-              )
+              )*/
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0, 20.0),
