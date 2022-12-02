@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:front_ecoaqua/devicesScreen.dart';
 
+import 'package:http/http.dart' as http;
+import 'models/Customer.dart';
+
 import 'createAccount.dart';
 
 void main() {
@@ -37,6 +40,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -63,6 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 10.0),
               child:
               TextFormField(
+                controller: emailController,
                 decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.account_circle, color: Colors.white),
                   labelText: 'Email',
@@ -84,6 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30, 10.0),
               child:
               TextFormField(
+                controller: passwordController,
                 decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.key, color: Colors.white),
                   labelText: 'Password',
@@ -111,10 +126,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                     ),
                       onPressed: () {
-                        // Respond to button press
-                        Navigator.push(
-                            context, MaterialPageRoute(builder: (context) => const DevicesPage())
-                        );
+                        if (Customer.login(emailController.text,passwordController.text).toString()!="true"){
+                          Navigator.push(
+                              context, MaterialPageRoute(
+                              builder: (context) => const DevicesPage())
+                          );
+                        }
                       },
                       child: const Text('Sign In')
                   ),

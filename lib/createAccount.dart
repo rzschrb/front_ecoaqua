@@ -1,3 +1,7 @@
+import 'dart:ffi' as ffi;
+
+import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
 
 import 'package:front_ecoaqua/main.dart';
@@ -32,6 +36,31 @@ class CreateAccountHome extends StatefulWidget {
 
 class _CreateAccountHomeState extends State<CreateAccountHome> {
 
+  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+  Future<String> setStatusClosed(String id) async {
+    final response = await http
+        .post(Uri.parse('http://192.168.0.6:8080/influxIOT/waterbox/close'),body: "{\"id\" : \"${id}\"}");
+
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      return "true";
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      return "false";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -58,6 +87,7 @@ class _CreateAccountHomeState extends State<CreateAccountHome> {
               padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 10.0),
               child:
               TextFormField(
+                controller: usernameController,
                 decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.account_circle, color: Colors.white),
                   labelText: 'Username',
@@ -79,6 +109,7 @@ class _CreateAccountHomeState extends State<CreateAccountHome> {
               padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30, 10.0),
               child:
               TextFormField(
+                controller: emailController,
                 decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.email, color: Colors.white),
                   labelText: 'Email',
@@ -100,6 +131,7 @@ class _CreateAccountHomeState extends State<CreateAccountHome> {
               padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30, 10.0),
               child:
               TextFormField(
+                controller: passwordController,
                 decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.key, color: Colors.white),
                   labelText: 'Password',
@@ -148,7 +180,10 @@ class _CreateAccountHomeState extends State<CreateAccountHome> {
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                     ),
                     onPressed: () {
-                      // Respond to button press
+                      print(Text(usernameController.text));
+                      print(Text(emailController.text));
+                      print(Text(passwordController.text));
+                      if (setStatusClosed(usernameController.text) == "true")
                       Navigator.push(
                           context, MaterialPageRoute(builder: (context) => const DevicesPage())
                       );

@@ -3,9 +3,13 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:http/http.dart' as http;
+import 'package:front_ecoaqua/models/Customer.dart';
+
+import 'package:front_ecoaqua/main.dart' as login_page;
+
 import 'package:front_ecoaqua/main.dart';
 import 'package:front_ecoaqua/infoDevice.dart';
-import 'package:front_ecoaqua/posts.dart';
 
 class DevicesPage extends StatelessWidget {
   const DevicesPage({super.key});
@@ -78,7 +82,6 @@ class _DevicesHomeState extends State<DevicesHome> {
               ],
             ),
             Expanded(child:
-                PostsPage()
               /*ListView(
                 padding: const EdgeInsets.fromLTRB(32.0,0.0,32.0,0.0),
                 children: [
